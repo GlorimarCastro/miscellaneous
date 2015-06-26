@@ -6,17 +6,19 @@ import java.util.ArrayList;
 
 import Files.CSVFileSpliter;
 import Files.FileHandeler;
-import Files.RandomTestAndTrainingFileSpliter;
+import Files.KFoldCrossValidationGenerator;
 
 public class TestAndTrainingGenerator {
 	public static void main(String[] args) throws IOException{
 		String FILE_SEPARATOR = System.getProperty("file.separator");
 		
+		//inputs 1. file with data 2. directory to save results
+		
 		//Create data separation
-		RandomTestAndTrainingFileSpliter filter = new RandomTestAndTrainingFileSpliter(new File("Data/summer2015/NewYorkTimes2007/completeMetricsWithPoliticianRoleForNYT2007_NotIsolated.csv"));
-		filter.setNumberOfSubFiles(100);
-		filter.setTestPercentage(80);
-		filter.setMainResultDirectoryPath("Data/summer2015/NewYorkTimes2007");
+		KFoldCrossValidationGenerator filter = new KFoldCrossValidationGenerator(new File(args[0]));
+		filter.setFoldAmnt(100);
+		filter.setTestPercentage(20);
+		filter.setMainResultDirectoryPath(args[1]);
 		filter.executeTestAndTrainingSpliterToFile();
 		
 		
@@ -29,7 +31,10 @@ public class TestAndTrainingGenerator {
 		
 		//Divide the features
 		ArrayList<Integer> defaultColumn = new ArrayList<Integer>();
-		defaultColumn.add(1);
+		defaultColumn.add(19);
+		defaultColumn.add(20);
+		defaultColumn.add(21);
+		defaultColumn.add(22);
 		for(File f : testFiles){
 			if(f.isDirectory()){
 				continue;

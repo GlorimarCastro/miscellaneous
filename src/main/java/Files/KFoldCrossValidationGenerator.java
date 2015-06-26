@@ -17,7 +17,7 @@ import Files.FileHandeler;
  * @author GL26163
  *
  */
-public class RandomTestAndTrainingFileSpliter {
+public class KFoldCrossValidationGenerator {
 
 	private String outputDirName = "TestAndTrainingSubsets";
 	private final String FILE_SEPARATOR = System.getProperty("file.separator");
@@ -73,7 +73,7 @@ public class RandomTestAndTrainingFileSpliter {
 	 * data for training and the other 50% for testing
 	 * @param inputFile
 	 */
-	public RandomTestAndTrainingFileSpliter(File inputFile){
+	public KFoldCrossValidationGenerator(File inputFile){
 		if(inputFile == null){
 			throw new IllegalArgumentException("Input file canot be null");
 		}
@@ -85,7 +85,7 @@ public class RandomTestAndTrainingFileSpliter {
 	}
 	
 	
-	public RandomTestAndTrainingFileSpliter(int numberOfSubFiles,
+	public KFoldCrossValidationGenerator(int numberOfSubFiles,
 			int testPercentage, File inputFile) {
 		super();
 		if(inputFile == null){
@@ -234,12 +234,12 @@ public class RandomTestAndTrainingFileSpliter {
 	}
 
 
-	public int getNumberOfSubFiles() {
+	public int getFoldAmnt() {
 		return numberOfSubFiles;
 	}
 
 
-	public void setNumberOfSubFiles(int numberOfSubFiles) {
+	public void setFoldAmnt(int numberOfSubFiles) {
 		this.numberOfSubFiles = numberOfSubFiles;
 	}
 
